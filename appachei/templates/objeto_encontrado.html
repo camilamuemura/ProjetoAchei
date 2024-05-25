@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'estilo.css' %}">
+    <script src="https://kit.fontawesome.com/7ddf7f6ec2.js" crossorigin="anonymous"></script>
+    <title>Objeto encontrado</title>    
+</head>
+<body>
+
+    <header class="barra-nav">
+        <div class="menu">
+            <img src="{% static 'bars-solid.svg' %}" alt="Ícone do menu">
+        </div>
+
+        <div class="logotipo">
+            <h1>Achei</h1>
+        </div>
+
+        <div class="perfil">
+            <img src="{% static 'user-regular.svg' %}" alt="Ícone de perfil">
+        </div>
+    </header>
+
+    <div>
+        <h3>Olá!</h3>
+        <p style="margin-bottom: 30px; text-align: center;">Este objeto foi perdido. 
+            <br> Por favor, envie uma mensagem ao dono para combinar a devolução.
+            <br> Agradecemos a ajuda!
+        </p>
+    </div>
+
+    {% if message_sent %}
+        <p>Mensagem enviada com sucesso!</p>
+    {% else %}
+        <form class="formulario" action="{% url 'objeto_encontrado' usuario.id %}" method="post">
+            {% csrf_token %}
+            <div class="campo">
+                <label for="mensagem">Digite sua mensagem:</label>
+                <br>
+                <input type="text" id="mensagem" name="mensagem" required>
+            </div>
+            <div class="campo">
+                <label for="contato">Contato (e-mail ou celular):</label>
+                <br>
+                <input type="text" id="contato" name="contato" required>
+            </div>
+            <div style="text-align: center;">
+                <button class="button" type="submit">Enviar</button>         
+            </div>
+        </form>
+    {% endif %}
+    
+    <footer>
+        Projeto Integrador III - Grupo 1
+        <br>
+        Univesp - 2024
+    </footer>
+
+</body>
+</html>

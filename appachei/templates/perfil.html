@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'estilo.css' %}">
+    <script src="https://kit.fontawesome.com/7ddf7f6ec2.js" crossorigin="anonymous"></script>
+    <title>Perfil</title>    
+</head>
+<body>
+
+    <header class="barra-nav">
+        <div class="menu">
+            <img src="{% static 'bars-solid.svg' %}" alt="Ícone do menu">
+        </div>
+
+        <div class="logotipo">
+            <h1>Achei</h1>
+        </div>
+
+        <div class="perfil">
+            <img src="{% static 'user-regular.svg' %}" alt="Ícone de perfil">
+        </div>
+    </header>
+
+    <div style="font-weight: bold; text-align: right; margin-top: 80px; margin-right: 20px;">
+        <a href="{% url 'logout' %}">
+            <p style="color:crimson;">Sair</p>
+        </a>
+    </div>
+
+    <div>
+        <h3>Olá, {{username}}.</h3>
+        <p style="margin-bottom: 30px; text-align: center;">Baixe seu QRCode individual e cole em seus objetos.
+            <br>Se alguém encontrá-los, poderá te mandar um e-mail para combinar a devolução.
+        </p>
+    </div>
+
+    <div style="text-align: center;">
+        {% if qr_code_url %}
+            <img src="{{ qr_code_url }}" alt="QRCode do Usuário" style="margin-bottom: 20px; width: 150px; height: 150px;">
+            <br>
+            <a href="{{ qr_code_download_url }}" download="qr_code.png" class="button" style="text-align: center;">Baixar QR Code</a>
+        {% endif %}       
+    </div>
+    
+    <footer>
+        Projeto Integrador III - Grupo 1
+        <br>
+        Univesp - 2024
+    </footer>
+
+
+</body>
+</html>

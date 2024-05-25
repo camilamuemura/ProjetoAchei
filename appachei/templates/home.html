@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'estilo.css' %}">
+    <script src="https://kit.fontawesome.com/7ddf7f6ec2.js" crossorigin="anonymous"></script>
+    <title>Página Inicial</title>    
+</head>
+<body>
+
+    <header class="barra-nav">
+        <div class="menu">
+            <img src="{% static 'bars-solid.svg' %}" alt="Ícone do menu">
+        </div>
+
+        <div class="logotipo">
+            
+            <h1>Achei</h1>
+        </div>
+
+        <div class="perfil">
+            <img src="{% static 'user-regular.svg' %}" alt="Ícone de perfil">
+        </div>
+    </header>
+
+    <div class="imagem-principal">
+        <img src="{% static 'imagem-home.jpg' %}">
+    </div>
+
+
+    <div class="div-centrada">
+        <a href="{% url 'cadastro' %}" class="button">Crie sua conta</a>
+        <a href="{% url 'login' %}">
+            <p style="text-decoration: underline;">Já tenho uma conta</p>
+        </a>
+    </div>
+
+    <div class="div-centrada">
+        <h2>Identifique e encontre seus objetos</h2>
+        <p>Faça seu cadastro, imprima seu QR Code personalizado e cole em seus pertences.</p>
+        <p>Se você perder um objeto, a pessoa que encontrá-lo poderá escanear o código com o celular e te avisar para combinar a devolução.</p>
+    </div>
+
+    <div class="div-centrada">
+        <p style="color: #5000d0; font-weight: bold;">PLACEHOLDER DO CONTADOR</p>
+        <p>objetos encontraram seus donos</p>
+    </div>
+
+    <footer>
+        Projeto Integrador III - Grupo 1
+        <br>
+        Univesp - 2024
+    </footer>
+
+
+</body>
+</html>
