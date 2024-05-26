@@ -146,6 +146,6 @@ EMAIL_USE_TLS = True
 
 #NECESSÁRIO IMPLEMENTAR AQUI VARIÁVEIS DE AMBIENTE PARA PROTEGER AS CREDENCIAIS DE ENVIO DAS MENSAGENS
 EMAIL_HOST_USER = 'projetoacheiunivesp@gmail.com'
-EMAIL_HOST_PASSWORD = 'dpix cvmb dsbw qbdz'
+EMAIL_HOST_PASSWORD = 'senha de app aqui'
 DEFAULT_FROM_EMAIL = 'projetoacheiunivesp@gmail.com'
 
