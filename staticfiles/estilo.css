@@ -41,6 +41,13 @@ p {
     color: rgb(20, 20, 20);
 }
 
+h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    color: rgb(20, 20, 20);
+    margin-left: 20px;
+}
+
 h2 {
     font-family: 'Inter', sans-serif;
     font-size: 20px;
@@ -49,25 +56,67 @@ h2 {
 
 h3 {
     font-family: 'Inter', sans-serif;
-    font-size: 32px;
+    font-size: 30px;
     color: #0050D0;
     margin-left: 20px;
 }
 
+/* Barra de navegação */
 .barra-nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 60px;
-    background-color:white;
+    background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
     border-bottom: 1px solid gainsboro;
+    z-index: 1000; /* Para garantir que a barra de navegação esteja sempre no topo */
 }
+
+.barra-nav .menu {
+    position: relative;
+    display: inline-block;
+}
+
+.barra-nav .menu img {
+    width: 24px;
+    cursor: pointer;
+}
+
+/* Dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 45px; 
+    left: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    font-family: 'Inter', sans-serif;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Mostrar o dropdown quando passar o mouse */
+.menu:hover .dropdown-content {
+    display: block;
+}
+
 
 .menu img,
 .perfil img {
@@ -87,6 +136,15 @@ h3 {
     font-weight: 400;
     font-style: normal;
     color: #0050D0;
+    text-decoration: none;    
+}
+
+.logotipo:visited {
+    font-family: "Kaushan Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: #0050D0;
+    text-decoration: none;    
 }
 
 .imagem-principal img {
@@ -95,16 +153,15 @@ h3 {
 }
 
 footer {
-    margin-top: 30px;
+    margin-top: 30px; /* Ajuste o espaçamento conforme necessário */
     text-align: center;
     font-family: "Inter", sans-serif;
     font-size: 12px;
     font-style: italic;
     color: dimgray;
-    position: fixed;
-    bottom: 10px;
     width: 100%;
 }
+
 
 .formulario {
     font-family: 'Inter', sans-serif;
@@ -122,3 +179,86 @@ footer {
     width: 95%;
     height: 30px;
 }
+
+.button-perfil {
+    border: 1px solid gray;
+    background-color: white;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 18px; /* Tamanho da fonte */
+    padding: 10px 20px; /* Espaçamento interno (topo/baixo, esquerda/direita) */
+    border-radius: 15px; /* Arredondar cantos */
+    text-decoration: none; /* Remover sublinhado padrão em links */
+  }
+   
+  .button-perfil:hover {
+    background-color: #F6BE2C;
+    color: black;   
+  }
+
+  /* Estilo do botão quando pressionado */
+.button-perfil:active {
+    background-color: #b18619
+    ;
+}
+
+  .button-perfil i {
+    margin-right: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+.carrossel {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carrossel-imagens {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carrossel-imagens img {
+    width: 100%;
+    flex: 0 0 100%;
+}
+
+button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+button.prev {
+    left: 0;
+}
+
+button.next {
+    right: 0;
+}
+
+button.prev:hover, button.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+  

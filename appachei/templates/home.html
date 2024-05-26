@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'estilo.css' %}">
     <script src="https://kit.fontawesome.com/7ddf7f6ec2.js" crossorigin="anonymous"></script>
+    <script src="{% static 'script.js' %}"></script>
     <title>Página Inicial</title>    
 </head>
 <body>
@@ -18,28 +19,59 @@
     <header class="barra-nav">
         <div class="menu">
             <img src="{% static 'bars-solid.svg' %}" alt="Ícone do menu">
+            <div class="dropdown-content">
+                <a href="{% url 'quemsomos' %}">Quem somos</a>
+                <a href="{% url 'projeto' %}">O projeto</a>
+                <a href="{% url 'saibamais' %}">Saiba mais</a>
+            </div>
         </div>
 
         <div class="logotipo">
-            
-            <h1>Achei</h1>
+            <a href="{% url 'home' %}" class="logotipo">
+                <h1>Achei</h1>
+            </a>
         </div>
 
         <div class="perfil">
-            <img src="{% static 'user-regular.svg' %}" alt="Ícone de perfil">
+            {% if user.is_authenticated %}
+                <a href="{% url 'perfil' %}">
+                    <img src="{% static 'user-regular.svg' %}" alt="Ícone de perfil">            
+                </a>
+
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'user-regular.svg' %}" alt="Ícone de perfil">
+                </a>
+            {% endif %}
+            
         </div>
     </header>
 
-    <div class="imagem-principal">
-        <img src="{% static 'imagem-home.jpg' %}">
+
+    <div class="carrossel" style="margin-top: 60px;">
+        <div class="carrossel-imagens">
+            <img src="{% static 'imagem-home.jpg' %}" alt="Imagem 1">
+            <img src="{% static 'imagem-2.jpg' %}" alt="Imagem 2">
+            <img src="{% static 'imagem-3.jpg' %}" alt="Imagem 3">
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
     </div>
+    
 
 
     <div class="div-centrada">
-        <a href="{% url 'cadastro' %}" class="button">Crie sua conta</a>
-        <a href="{% url 'login' %}">
-            <p style="text-decoration: underline;">Já tenho uma conta</p>
-        </a>
+        <a href="{% url 'cadastro' %}" class="button">Crie sua conta</a>   
+        {% if user.is_authenticated %}
+            <a href="{% url 'perfil' %}">
+                <p style="text-decoration: underline;">Já tenho uma conta</p>            
+            </a>
+        
+        {% else %}
+            <a href="{% url 'login' %}">
+                <p style="text-decoration: underline;">Já tenho uma conta</p>
+            </a>
+        {% endif %}
     </div>
 
     <div class="div-centrada">
@@ -48,17 +80,11 @@
         <p>Se você perder um objeto, a pessoa que encontrá-lo poderá escanear o código com o celular e te avisar para combinar a devolução.</p>
     </div>
 
-    <div class="div-centrada">
-        <p style="color: #5000d0; font-weight: bold;">PLACEHOLDER DO CONTADOR</p>
-        <p>objetos encontraram seus donos</p>
-    </div>
-
     <footer>
-        Projeto Integrador III - Grupo 1
+        Projeto Integrador III - Grupo 2
         <br>
         Univesp - 2024
     </footer>
-
 
 </body>
 </html>

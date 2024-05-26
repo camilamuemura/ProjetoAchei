@@ -11,34 +11,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'estilo.css' %}">
     <script src="https://kit.fontawesome.com/7ddf7f6ec2.js" crossorigin="anonymous"></script>
-    <title>Objeto encontrado</title>    
+    <script src="{% static 'script.js' %}"></script>
+    <title>Página Inicial</title>    
 </head>
 <body>
 
     <header class="barra-nav">
         <div class="menu">
             <img src="{% static 'bars-solid.svg' %}" alt="Ícone do menu">
+            <div class="dropdown-content">
+                <a href="{% url 'quemsomos' %}">Quem somos</a>
+                <a href="{% url 'projeto' %}">O projeto</a>
+                <a href="{% url 'saibamais' %}">Saiba mais</a>
+            </div>
         </div>
 
         <div class="logotipo">
-            <h1>Achei</h1>
+            <a href="{% url 'home' %}" class="logotipo">
+                <h1>Achei</h1>
+            </a>
         </div>
 
         <div class="perfil">
-            <img src="{% static 'user-regular.svg' %}" alt="Ícone de perfil">
+            {% if user.is_authenticated %}
+                <a href="{% url 'perfil' %}">
+                    <img src="{% static 'user-regular.svg' %}" alt="Ícone de perfil">            
+                </a>
+
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'user-regular.svg' %}" alt="Ícone de perfil">
+                </a>
+            {% endif %}
+            
         </div>
     </header>
 
-    <div>
+    <div style="margin-top: 80px;">
         <h3>Olá!</h3>
-        <p style="margin-bottom: 30px; text-align: center;">Este objeto foi perdido. 
+        <p style="margin-bottom: 30px; margin-left: 20px;">Este objeto foi perdido. 
             <br> Por favor, envie uma mensagem ao dono para combinar a devolução.
             <br> Agradecemos a ajuda!
         </p>
     </div>
 
     {% if message_sent %}
-        <p>Mensagem enviada com sucesso!</p>
+        <script>window.location.href = "{% url 'obrigado' %}";</script>
     {% else %}
         <form class="formulario" action="{% url 'objeto_encontrado' usuario.id %}" method="post">
             {% csrf_token %}
@@ -57,9 +75,11 @@
             </div>
         </form>
     {% endif %}
+
+    <p style="margin-left: 20px; margin-top: 30px; font-style: italic;">Ao combinar a devolução, marque o encontro em locais públicos e movimentados, para sua segurança e do proprietário do objeto.</p>
     
     <footer>
-        Projeto Integrador III - Grupo 1
+        Projeto Integrador III - Grupo 2
         <br>
         Univesp - 2024
     </footer>

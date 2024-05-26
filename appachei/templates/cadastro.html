@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'estilo.css' %}">
     <script src="https://kit.fontawesome.com/7ddf7f6ec2.js" crossorigin="anonymous"></script>
+    <script src="{% static 'script.js' %}"></script>
     <title>Fazer cadastro</title>    
 </head>
 <body>
@@ -18,14 +19,31 @@
     <header class="barra-nav">
         <div class="menu">
             <img src="{% static 'bars-solid.svg' %}" alt="Ícone do menu">
+            <div class="dropdown-content">
+                <a href="{% url 'quemsomos' %}">Quem somos</a>
+                <a href="{% url 'projeto' %}">O projeto</a>
+                <a href="{% url 'saibamais' %}">Saiba mais</a>
+            </div>
         </div>
 
         <div class="logotipo">
-            <h1>Achei</h1>
+            <a href="{% url 'home' %}" class="logotipo">
+                <h1>Achei</h1>
+            </a>
         </div>
 
         <div class="perfil">
-            <img src="{% static 'user-regular.svg' %}" alt="Ícone de perfil">
+            {% if user.is_authenticated %}
+                <a href="{% url 'perfil' %}">
+                    <img src="{% static 'user-regular.svg' %}" alt="Ícone de perfil">            
+                </a>
+
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'user-regular.svg' %}" alt="Ícone de perfil">
+                </a>
+            {% endif %}
+            
         </div>
     </header>
 
@@ -64,15 +82,23 @@
         </div>
         <div style="text-align: center;">
             <button class="button" type="submit">Criar conta</button>
-            <a href="{% url 'login' %}">
-                <p style="text-decoration: underline;">Já tenho uma conta</p>
-            </a>
+            
+            {% if user.is_authenticated %}
+                    <a href="{% url 'perfil' %}">
+                        <p style="text-decoration: underline;">Já tenho uma conta</p>            
+                    </a>
+        
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <p style="text-decoration: underline;">Já tenho uma conta</p>
+                </a>
+             {% endif %}
+
         </div>
     </form>
 
-
     <footer>
-        Projeto Integrador III - Grupo 1
+        Projeto Integrador III - Grupo 2
         <br>
         Univesp - 2024
     </footer>

@@ -47,36 +47,48 @@
         </div>
     </header>
 
-    <div style="font-weight: bold; text-align: right; margin-top: 80px; margin-right: 20px;">
-        <a href="{% url 'logout' %}">
-            <p style="color:crimson;">Sair</p>
+    <div class="voltar">
+        <a href="{% url 'perfil' %}">
+            <img src="{% static 'circle-left-solid.svg' %}" alt="Icone de voltar">
         </a>
     </div>
 
-    <div>
-        <h3>Olá, {{username}}.</h3>
-        <p style="margin-bottom: 30px; text-align: center;">Baixe seu QRCode individual e cole em seus objetos.
-            <br>Se alguém encontrá-los, poderá te mandar um e-mail para combinar a devolução.
-        </p>
+    <div style="margin-top: 50px;">
+        <h3>Objetos cadastrados</h3>
+        <p style="margin-bottom: 30px; text-align: center;">Cadastre os objetos em que você colou seu QRCode.<br> Assim, você terá um controle do que já foi identificado.</p>
     </div>
 
-    <div style="text-align: center;">
-        {% if qr_code_url %}
-            <img src="{{ qr_code_url }}" alt="QRCode do Usuário" style="margin-bottom: 20px; width: 150px; height: 150px;">
+    <form class="formulario" action="{% url 'salvar_objeto' %}" method="post">
+        {% csrf_token %}
+
+        <div class="campo">
+            <label for="nome">Digite o nome do objeto:</label>
             <br>
-            <a href="{{ qr_code_url }}" download="qr_code.png" class="button" style="text-align: center;">Baixar QR Code</a>
-        {% endif %}         
-    </div>
+            <input type="text" id="objeto" name="objeto" required>
+        </div>
+                <div style="text-align: center;">
+            <button class="button" type="submit">Salvar</button>
+        </div>
+    </form>
 
-    <div style="text-align: center; margin-top: 40px;">
-        <a href="{% url 'objetos_cadastrados' %}">
-            <button class="button-perfil">
-                <img style="width: 20px; vertical-align: top; margin-right: 5px;" src="{% static 'pen-to-square-regular.svg' %}">
-                Objetos cadastrados
-            </button>
-        </a>        
+    <div style="margin-top: 30px;">
+        <h4 style="text-align: center;">Objetos que você já cadastrou:</h4>
+        <ul style="list-style: none; padding: 0;">
+            {% for objeto in objetos %}
+                <li style="margin-bottom: 10px; font-family: Inter, 'sans serif'; font-size: 20px; text-align: center;">
+                    {{ objeto.nome }}
+                    <form action="{% url 'apagar_objeto' objeto.id %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" style="background: none; border: none; cursor: pointer;">
+                            <img src="{% static 'trash-can-solid.svg' %}" style="margin-left: 20px; color: red; width:15px;"></i>
+                        </button>
+                    </form>
+                    
+                </li>
+            {% endfor %}
+        </ul>
     </div>
-    
+        
     <footer>
         Projeto Integrador III - Grupo 2
         <br>

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{% static 'estilo.css' %}">
     <script src="https://kit.fontawesome.com/7ddf7f6ec2.js" crossorigin="anonymous"></script>
     <script src="{% static 'script.js' %}"></script>
-    <title>Página Inicial</title>    
+    <title>Quem somos</title>    
 </head>
 <body>
 
@@ -47,41 +47,53 @@
         </div>
     </header>
 
-    <div style="font-weight: bold; text-align: right; margin-top: 80px; margin-right: 20px;">
-        <a href="{% url 'logout' %}">
-            <p style="color:crimson;">Sair</p>
+    <div class="voltar">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'circle-left-solid.svg' %}" alt="Icone de voltar">
         </a>
     </div>
+  
+    <div> 
+        <fieldset style="padding-top:0%; border: 3px  solid navy;text-align:left;font-size: 16px;font-family: 'Inter', sans-serif;fieldset p{margin:0};">
 
-    <div>
-        <h3>Olá, {{username}}.</h3>
-        <p style="margin-bottom: 30px; text-align: center;">Baixe seu QRCode individual e cole em seus objetos.
-            <br>Se alguém encontrá-los, poderá te mandar um e-mail para combinar a devolução.
-        </p>
-    </div>
+            <legend style="margin-left: 1em; padding: 0.2em 0.8em "><h3>Quem Somos?</h3></legend>
 
-    <div style="text-align: center;">
-        {% if qr_code_url %}
-            <img src="{{ qr_code_url }}" alt="QRCode do Usuário" style="margin-bottom: 20px; width: 150px; height: 150px;">
-            <br>
-            <a href="{{ qr_code_url }}" download="qr_code.png" class="button" style="text-align: center;">Baixar QR Code</a>
-        {% endif %}         
-    </div>
+        Somos um grupo de universitários da Universidade Virtual do Estado de São Paulo (UNIVESP)
+        entusiastas da tecnologia e criadores de soluções inovadoras e acessíveis como o projeto Achei.
 
-    <div style="text-align: center; margin-top: 40px;">
-        <a href="{% url 'objetos_cadastrados' %}">
-            <button class="button-perfil">
-                <img style="width: 20px; vertical-align: top; margin-right: 5px;" src="{% static 'pen-to-square-regular.svg' %}">
-                Objetos cadastrados
-            </button>
-        </a>        
-    </div>
-    
-    <footer>
-        Projeto Integrador III - Grupo 2
-        <br>
-        Univesp - 2024
-    </footer>
+        </fieldset>
+
+        <fieldset style="padding-top:0%; border: 3px  solid navy;text-align:left;font-size: 16px;font-family: 'Inter', sans-serif;fieldset p{margin:0};">
+
+            <legend style="margin-left: 1em; padding: 0.2em 0.8em "><h3>Conheça o grupo</h3></legend>
+
+        <ul>  
+            <li>Antonio Carlos Vieira Santos Neto</li>
+            <li>Camila Mitie Uemura</li>
+            <li>Dayane da Silva Oliveira Martins</li>
+            <li>Eduardo Bresciani</li>
+            <li>Jessica Fuger Reis Couto</li>
+            <li>Mauricio Elidio da Silva</li>
+            <li>Paulo Victorino</li>
+            <li>Saulo Feres Henrique</li>
+        </ul>
+        </fieldset>
+
+    </div>  
+
+</section>
+
+<div style="margin-top: 30px;">
+    <p style="font-style:italic; text-align: center;">Essa aplicação é um trabalho da disciplina de Projeto Integrador III da UNIVESP.</p>
+    <p style="font-style:italic; text-align: center;">Para mais informações, acesse: <a href="https://univesp.br/">univesp.br</a></p>
+</div>
+
+<footer>
+    Projeto Integrador III - Grupo 2
+    <br>
+    Univesp - 2024
+</footer>
+
 
 
 </body>
